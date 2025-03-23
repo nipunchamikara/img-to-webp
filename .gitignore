@@ -1,0 +1,13 @@
+dist/
+
+.venv/
+uv.lock
+.python-version
+*.egg-info/
+
+.idea/
+.vscode/
+
+.coverage
+htmlcov/
+coverage.xml
