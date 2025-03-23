@@ -42,7 +42,7 @@ img-to-webp --input_dir INPUT_DIR [options]
 ### Example
 
 ```sh
-img-to-webp --input_dir images --output_dir webp_images --resize_mode cover --overwrite
+img-to-webp --input_dir ./images --output_dir ./webp_images --resize_mode cover --overwrite
 ```
 
 ### Configuration File
@@ -74,7 +74,7 @@ This project uses [uv](https://docs.astral.sh/uv/) Python package manager.
 To set up the development environment, clone the repository and install the dependencies:
 
 ```sh
-git clone <repository_url>
+git clone https://github.com/nipunchamikara/img-to-webp.git
 cd img-to-webp
 uv venv
 source .venv/bin/activate
