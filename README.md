@@ -1,5 +1,7 @@
 # img-to-webp
 
+[![Build and Test](https://github.com/nipunchamikara/img-to-webp/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/nipunchamikara/img-to-webp/actions/workflows/build-and-test.yml)
+
 `img-to-webp` is a Python package that provides a command-line interface (CLI) for converting images to the WebP format.
 It supports various image formats and allows for resizing images based on predefined rules.
 
