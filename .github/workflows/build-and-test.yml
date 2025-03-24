@@ -18,7 +18,7 @@ jobs:
       - name: Install the project
         run: uv sync --all-groups
       - name: Run linters
-        run: uv run ruff format && uv run ruff check
+        run: uv run ruff format --check && uv run ruff check
       - name: Build wheel
         run: uv build
       - name: Save wheel
