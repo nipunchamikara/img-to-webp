@@ -11,15 +11,11 @@ def main():
         input_dir=config.input_dir,
         output_dir=config.output_dir,
         overwrite=config.overwrite,
-        resize_mode=config.resize_mode,
+        default_resize_mode=config.default_resize_mode,
         verbose=config.verbose,
-        image_sizes=config.image_sizes,
+        resize_rules=config.resize_rules,
         default_size=config.default_size,
         quality=config.quality,
     )
 
     processor.process_all_images()
-
-
-if __name__ == "__main__":
-    main()

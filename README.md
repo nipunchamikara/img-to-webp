@@ -28,23 +28,31 @@ pip install img-to-webp
 You can use the CLI to process images by specifying the input and output directories, along with other options.
 
 ```sh
-img-to-webp --input_dir INPUT_DIR [options]
+img-to-webp --input-dir INPUT_DIR [options]
 ```
 
 ### Options
 
-- `--input_dir`: Directory containing the images to be processed.
-- `--output_dir`: Directory where the processed images will be saved. If not specified, the output directory will be the
+- `--input-dir`: Directory containing the images to be processed.
+- `--output-dir`: Directory where the processed images will be saved. If not specified, the output directory will be the
   same as the input directory.
+- `--default-resize-mode`: Mode for resizing images (`cover`, `contain`, `fill`, `none`).
+- `--default-size`: Default size for resizing images (width, height).
+- `--quality`: Quality of the output WebP images (0-100).
 - `--overwrite`: Overwrite existing files in the output directory.
-- `--resize_mode`: Mode for resizing images (`cover`, `contain`, `fill`, `none`).
 - `--verbose`: Enable verbose logging.
 - `--config`: Path to a YAML configuration file.
 
 ### Example
 
 ```sh
-img-to-webp --input_dir ./images --output_dir ./webp_images --resize_mode cover --overwrite
+img-to-webp --input-dir ./images \
+    --output-dir ./webp_images \
+    --default-resize-mode cover \
+    --default-size 256 256 \
+    --quality 80 \
+    --overwrite \
+    --verbose
 ```
 
 ### Configuration File
@@ -55,12 +63,14 @@ configuration file with the command-line arguments.
 ```yaml
 input_dir: ./images
 output_dir: ./webp_images
-resize_mode: cover
-image_sizes:
-  - regex: ".*_small.*"
+default_resize_mode: cover
+resize_rules:
+  - pattern: ".*_small.*"
     size: [ 128, 128 ]
-  - regex: ".*_large.*"
+    mode: contain
+  - pattern: ".*_large.*"
     size: [ 512, 512 ]
+    mode: cover
 default_size: [ 256, 256 ]
 ```
 
