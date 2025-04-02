@@ -40,6 +40,21 @@ class TestImageProcessor(BaseTest):
             new_img = Image.open(processor.process_image(image_path))
             self.assertEqual(new_img.size, img.size)
 
+    def test_no_pattern(self):
+        processor = ImageProcessor(
+            input_dir=str(self._input_dir),
+            output_dir=str(self._output_dir),
+            resize_rules=[],
+            default_size=(100, 100),
+            default_resize_mode=ResizeMode.COVER,
+        )
+        processor.process_all_images()
+
+        webp_files = list(self._output_dir.rglob("*.webp"))
+        for webp_file in webp_files:
+            img = Image.open(webp_file)
+            self.assertEqual(img.size, (100, 100))
+
     @parameterized.expand([False, True])
     def test_image_overwrite_behavior(self, overwrite):
         [last_modified, new_last_modified] = self.process_and_get_last_modified(

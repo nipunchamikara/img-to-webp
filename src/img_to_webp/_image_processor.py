@@ -102,7 +102,10 @@ class ImageProcessor:
                     else (resize_rule.mode or self._default_resize_mode)
                 )
                 return size, mode
-        return None, None
+        mode = (
+            ResizeMode.NONE if self._default_size is None else self._default_resize_mode
+        )
+        return self._default_size, mode
 
     def _initialize_output_dir(self):
         """Initializes the output directory."""
