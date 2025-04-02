@@ -63,7 +63,12 @@ class Config:
             resize_rules=yaml_config.resize_rules if yaml_config else [],
             quality=args.quality or (yaml_config.quality if yaml_config else 80),
             default_size=tuple(args.default_size)
-            or (tuple(yaml_config.default_size) if yaml_config else (256, 256)),
+            if args.default_size is not None
+            else (
+                tuple(yaml_config.default_size)
+                if yaml_config and yaml_config.default_size is not None
+                else (256, 256)
+            ),
             default_resize_mode=ResizeMode(
                 args.default_resize_mode
                 or (yaml_config.default_resize_mode if yaml_config else "contain")
