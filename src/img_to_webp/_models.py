@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Tuple
+from typing import Tuple, Optional
 
 
 class ResizeMode(Enum):
@@ -16,10 +16,18 @@ class ResizeMode(Enum):
 @dataclass
 class ResizeRule:
     pattern: str
-    size: Tuple[int, int]
-    mode: ResizeMode
+    size: Optional[Tuple[int, int]]
+    mode: Optional[ResizeMode]
 
-    def __init__(self, pattern: str, size: Tuple[int, int], mode: str):
+    def __init__(
+        self,
+        pattern: str,
+        size: Optional[Tuple[int, int]] = None,
+        mode: Optional[str] = None,
+    ):
+        if not mode and not size:
+            raise ValueError("Either size or mode must be provided")
+
         self.pattern = pattern
-        self.size = tuple(size)
-        self.mode = ResizeMode(mode)
+        self.size = tuple(size) if size else None
+        self.mode = ResizeMode(mode) if mode else None

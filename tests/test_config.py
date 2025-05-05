@@ -77,6 +77,26 @@ class TestConfig(unittest.TestCase):
         with self.assertRaises(ValueError):
             Config.from_args(mock_args(), "config.yaml")
 
+    @patch(
+        "builtins.open",
+        new_callable=mock_open,
+        read_data="""
+        input_dir: input
+        output_dir: output
+        resize_rules:
+          - pattern: "*.jpg"
+        quality: 90
+        default_size: [100, 100]
+        default_resize_mode: cover
+        overwrite: true
+        verbose: true
+        """,
+    )
+    @patch("os.path.exists", return_value=True)
+    def test_size_or_mode_required(self, mock_exists, mock_file):
+        with self.assertRaises(ValueError):
+            Config.from_yaml("config.yaml")
+
 
 if __name__ == "__main__":
     unittest.main()
