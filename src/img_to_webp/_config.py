@@ -28,7 +28,7 @@ class Config:
         with open(yaml_path, "r") as file:
             config_dict = yaml.safe_load(file)
 
-        resize_rules = [ResizeRule(**fs) for fs in config_dict.get("resize_rule", [])]
+        resize_rules = [ResizeRule(**fs) for fs in config_dict.get("resize_rules", [])]
 
         input_dir = config_dict.get("input_dir", "")
 

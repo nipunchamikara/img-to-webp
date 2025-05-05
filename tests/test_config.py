@@ -7,7 +7,7 @@ from src.img_to_webp import Config, ResizeMode
 yaml_data = """
 input_dir: input
 output_dir: output
-resize_rule:
+resize_rules:
   - pattern: "*.jpg"
     size: [100, 100]
     mode: cover
