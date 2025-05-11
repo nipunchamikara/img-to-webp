@@ -15,10 +15,10 @@ It supports various image formats and allows for resizing images based on predef
 
 ## Installation
 
-To install the package, use pip:
+To install the package for a user, you can use `pip`:
 
 ```sh
-pip install img-to-webp
+pip install -U img-to-webp
 ```
 
 ## Usage
